@@ -114,6 +114,7 @@ if $(OS) = NT { #Windows
 
 #Store the names of all the .cpp files to build into a variable:
 GAME_NAMES =
+	NewMode
 	PongMode
 	main
 	load_save_png
@@ -127,4 +128,4 @@ LOCATE_TARGET = objs ; #put objects in 'objs' directory
 Objects $(GAME_NAMES:S=.cpp) ;
 
 LOCATE_TARGET = dist ; #put main in 'dist' directory
-MainFromObjects pong : $(GAME_NAMES:S=$(SUFOBJ)) ;
+MainFromObjects tank : $(GAME_NAMES:S=$(SUFOBJ)) ;

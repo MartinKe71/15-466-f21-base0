@@ -4,6 +4,9 @@
 //The 'PongMode' mode plays the game:
 #include "PongMode.hpp"
 
+//The 'NewMode' mode for the assignment
+#include "NewMode.hpp"
+
 //GL.hpp will include a non-namespace-polluting set of opengl prototypes:
 #include "GL.hpp"
 
@@ -47,9 +50,9 @@ int main(int argc, char **argv) {
 
 	//create window:
 	SDL_Window *window = SDL_CreateWindow(
-		"gp21 pong", //TODO: remember to set a title for your game!
+		"Raging Tank", //TODO: remember to set a title for your game!
 		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-		640, 480, //TODO: modify window size if you'd like
+		480, 480, //TODO: modify window size if you'd like
 		SDL_WINDOW_OPENGL
 		| SDL_WINDOW_RESIZABLE //uncomment to allow resizing
 		| SDL_WINDOW_ALLOW_HIGHDPI //uncomment for full resolution on high-DPI screens
@@ -87,7 +90,7 @@ int main(int argc, char **argv) {
 	//SDL_ShowCursor(SDL_DISABLE);
 
 	//------------ create game mode + make current --------------
-	Mode::set_current(std::make_shared< PongMode >());
+	Mode::set_current(std::make_shared< NewMode >());
 
 	//------------ main loop ------------
 

@@ -10,7 +10,7 @@ Screen Shot:
 
 How To Play:
 
-A/d or arrows for left and right movement. Space bar or left mouse button for shooting bullets.
+A/D or <-/-> arrows for left and right movement. Space bar or left mouse button for shooting bullets.
 
 Sources: Referenced this stackoverflow on generating random intergers: https://stackoverflow.com/a/19666713
 

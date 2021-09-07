@@ -19,6 +19,7 @@ NewMode::NewMode() {
 		}
 		spawn_y = starting_y;
 	}
+	std::cout << "Score: 0";
 
 	//----- allocate OpenGL resources -----
 	{ //vertex buffer:
@@ -195,7 +196,7 @@ void NewMode::update(float elapsed) {
 			bullet_available--;
 			bullet_used++;
 			bullets.emplace_back(player + glm::vec2(0.0f, 0.7f * player_radius.y + 2.0f * bullet_radius.y));
-			std::cout << "Bullets available is" << bullet_available << "\n";
+			//std::cout << "Bullets available is" << bullet_available << "\n";
 		}
 	}
 		
@@ -209,13 +210,13 @@ void NewMode::update(float elapsed) {
 			enemy_positions[i].y -= 0.5f;
 			if (enemy_positions[i].y < (player.y - player_radius.y * 2.0f)) {
 				remove_idx = i;
-				std::cout << "there is one enemy below player" << "\n";
+				//std::cout << "there is one enemy below player" << "\n";
 			}
 		}
 
 		if (remove_idx != UINT32_MAX) {
 			enemy_positions.erase(enemy_positions.begin(), enemy_positions.begin() + remove_idx + 1);
-			std::cout << "erasing enemy" << "\n";
+			//std::cout << "erasing enemy" << "\n";
 
 			score += remove_idx + 1;
 			if (bullet_available < 5) {
@@ -224,8 +225,9 @@ void NewMode::update(float elapsed) {
 			row_survived++;
 			bullet_available = (int)enemy_survived / 5 - bullet_used + 1;
 			bullet_available = std::min(5, bullet_available);
-			std::cout << "bullet_available: " << bullet_available << "\n";				
-
+			//std::cout << "bullet_available: " << bullet_available << "\n";				
+			std::cout << "\r";
+			std::cout << "Score: " << score;
 			movement_interval = std::max(1.0f / (row_survived / 2.0f + 1.0f), 0.12f);
 		}
 
@@ -233,7 +235,7 @@ void NewMode::update(float elapsed) {
 		if (last_enemy.y < spawn_y - enemy_interval) {
 
 			int expected_bullet_num = bullet_available + (int) enemy_positions.size() / 5 - std::max((uint32_t)0, three_row_num) - 1;
-			std::cout << "Expected number of bullet is: " << expected_bullet_num << "\n";
+			//std::cout << "Expected number of bullet is: " << expected_bullet_num << "\n";
 
 			int max_enemy = 2;
 			if (expected_bullet_num > 0) {
@@ -246,7 +248,7 @@ void NewMode::update(float elapsed) {
 					three_in_a_row = 0;
 				}
 			}
-			std::cout << "max_enemy is: " << max_enemy << "\n";
+			//std::cout << "max_enemy is: " << max_enemy << "\n";
 			add_enemies(enemy_positions, spawn_y, max_enemy);
 		}
 	}	
@@ -284,6 +286,8 @@ void NewMode::update(float elapsed) {
 					i--;
 					three_row_num--;
 					score += 2;
+					std::cout << "\r";
+					std::cout << "Score: " << score;
 					break;
 				}
 			}
@@ -296,6 +300,7 @@ void NewMode::update(float elapsed) {
 			if (enemy_positions[i].x == player.x
 				&& rect_a_vs_b(player, player_radius, enemy_positions[i], enemy_radius * 0.8f)) {
 				game_freeze = true;
+				std::cout << "\n" << "Game Over!" << std::endl;
 				return;
 			}
 		}
@@ -308,10 +313,10 @@ void NewMode::add_enemies(std::vector< glm::vec2 >& enemy_positions, float pos_y
 
 	std::uniform_int_distribution<> num_dist(1, max_num);
 	int num = num_dist(mt);
-	std::cout << "Number of enemy this row is: " << num << "\n";
+	//std::cout << "Number of enemy this row is: " << num << "\n";
 	std::uniform_int_distribution<> pos_dist(-1, 1);
 	int pos = pos_dist(mt);
-	std::cout << "Randomed position is " << pos << "\n";
+	//std::cout << "Randomed position is " << pos << "\n";
 
 	if (num == 3) {
 		enemy_positions.emplace_back(glm::vec2(-2.0f, pos_y));

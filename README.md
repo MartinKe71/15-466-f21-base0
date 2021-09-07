@@ -2,7 +2,7 @@
 
 Author: Tianrun Ke
 
-Design: (TODO: In two sentences or fewer, describe what is new and interesting about your game.)
+Design: Obstacles would keep coming to the player. Player needs to dodge or even shoot obstacles when necessary. Bullets would recharge as the player survives more enemy.
 
 Screen Shot:
 
@@ -10,8 +10,8 @@ Screen Shot:
 
 How To Play:
 
-(TODO: describe the controls and (if needed) goals/strategy.)
+A/d or arrows for left and right movement. Space bar or left mouse button for shooting bullets.
 
-Sources: (TODO: list a source URL for any assets you did not create yourself. Make sure you have a license for the asset.)
+Sources: Referenced this stackoverflow on generating random intergers: https://stackoverflow.com/a/19666713
 
 This game was built with [NEST](NEST.md).
